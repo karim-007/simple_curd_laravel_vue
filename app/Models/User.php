@@ -24,8 +24,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'role_id', 'gender_id', 'shop_id', 'branch_id', 'name', 'user_name', 'email', 'phone_number',
-        'password','image', 'address','is_active'
+         'name', 'email', 'phone_number',
+        'password','image','is_active'
     ];
 
     /**
@@ -57,10 +57,4 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
-    public function shop(){
-        return $this->belongsTo(Shop::class);
-    }
-    public function role(){
-        return $this->belongsTo(Role::class);
-    }
 }

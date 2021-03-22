@@ -10,7 +10,7 @@
                     </router-link>
                 </li>
                 <li class="nav-item">
-                    <router-link class="nav-item-hold" :to="{name:''}">
+                    <router-link class="nav-item-hold" :to="{name:'admin.employee'}">
                         <i class="nav-icon i-Business-Man"></i>
                         <span class="nav-text">Employee</span>
                     </router-link>

@@ -1,4 +1,6 @@
 <?php
+
+use App\Http\Controllers\Api\EmployeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -13,6 +15,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['middleware'=>['history']], function () {
+
+    /*
+     * employee related routes
+     * */
+    Route::post('/get/all/employees', [EmployeController::class,'employees']);
+    Route::post('/employee/store', [EmployeController::class,'store']);
+    Route::post('/employee/update{employee}', [EmployeController::class,'update']);
+
 });
+
