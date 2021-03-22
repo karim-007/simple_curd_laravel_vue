@@ -22,7 +22,8 @@ Route::group(['middleware'=>['history']], function () {
      * */
     Route::post('/get/all/employees', [EmployeController::class,'employees']);
     Route::post('/employee/store', [EmployeController::class,'store']);
-    Route::post('/employee/update{employee}', [EmployeController::class,'update']);
+    Route::put('/employee/update{employee}', [EmployeController::class,'update']);
+    Route::delete('/employee/remove{employee}', [EmployeController::class,'remove']);
 
 });
 

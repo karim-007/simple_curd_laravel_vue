@@ -16,6 +16,8 @@
                                  class="ag-theme-alpine"
                                  :columnDefs="columnDefs"
                                  :rowData="rowData"
+                                 rowSelection="multiple"
+                                 @rowDoubleClicked="removeData"
                                  @rowClicked="btnClickedHandler"
                             >
                     </ag-grid-vue>
@@ -111,6 +113,7 @@
                     {headerName: 'Phone Number', field: 'phone_number'},
                     {headerName: 'Date of Birth', field: 'date_of_birth'},
                     {headerName: 'Salary', field: 'salary'},
+                    {headerName: 'Action', cellRendererFramework: 'DeleteCell'},
                 ];
 
                 axios.post('/api/get/all/employees').then(response =>{
@@ -123,12 +126,25 @@
             * method for employee update
             * */
             employeeUpdate(){
-                axios.post(`/api/employee/update${this.employee.id}`,new FormData(this.$refs.employee_update)).then((response)=>{
+                axios.put(`/api/employee/update${this.employee.id}`,new FormData(this.$refs.employee_update)).then((response)=>{
                     let data = response.data;
                     this.$toaster.success(data.message);
                 }).catch((error)=>{
                     if (error.response.status === 422) this.$toaster.error(error.response.data.error);
                     else this.$toaster.error(error);
+                });
+                this.getInfo();
+            },
+            /*
+            * method for remove data
+            * */
+            removeData(params){
+                let employee = params.node.data;
+                axios.delete(`/employee/remove${employee.id}`).then((response)=>{
+                    let data = response.data;
+                    this.$toaster.success(data.message);
+                }).catch((error)=>{
+                    this.$toaster.error(error);
                 });
                 this.getInfo();
             }

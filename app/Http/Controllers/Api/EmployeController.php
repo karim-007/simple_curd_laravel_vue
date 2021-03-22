@@ -66,4 +66,16 @@ class EmployeController extends Controller
         else return response()->json(['status'=>'fail','message'=>'Invalid request'],404);
 
     }
+
+    /*
+     * method for employee remove
+     * */
+    public function remove(Employee $employee)
+    {
+        $ss= $employee->delete();
+        if (isset($ss))
+            return response()->json(['status'=>'success','message'=>'successfully remove'],200);
+        else return response()->json(['status'=>'fail','message'=>'Invalid request'],404);
+
+    }
 }
