@@ -13,7 +13,7 @@ export default new VueRouter({
         /*employee related routes*/
         { path: '/employee', component: Employee, name:'admin.employee'},
         { path: '/employee/add', component: EmployeeAdd, name:'admin.employee.add'},
-        /*this is the test commit test test test test*/
+        /*this is the test commit test testt*/
 
     ],
 mode:'history',
